@@ -1,0 +1,35 @@
+.sheet {
+    max-width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+h2{
+    font-weight: normal;
+}
+
+#title{
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+.title-container{
+    box-sizing: border-box;
+    padding: 5px;
+    background-color: #eeefff;
+}
+
+@media  screen and (max-width: 900px){
+    .sheet {
+        max-width: 100%;
+    }
+}
+
+.annotate {
+    color: #555555;
+    font-size:12px;
+}
+.hello{
+    padding-left: 1em;
+    padding-right: 1em;
+ }
