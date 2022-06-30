@@ -2,12 +2,11 @@ import React from 'react';
 import './css/style.css'
 import hs_title from './img/hs_title.png'
 import bg_svg from './img/bg.svg'
-import {SuggestSheet} from "../SuggestSheet/SuggestSheet";
-import ReactDOM from "react-dom/client";
 
 export class Login extends React.Component {
     constructor(props) {
         super(props);
+        this.reLoad = props.childFunc
         this.state = {
             admissionTicketNumber:'',
             identityNumber:'',
@@ -60,7 +59,7 @@ export class Login extends React.Component {
     submit=(e)=>{
         e.preventDefault()
         let httpRequest = new XMLHttpRequest();
-        httpRequest.open("POST", "/api/login", true);
+        httpRequest.open("POST", "http://localhost:3001/api/login", true);   //请修改url
         httpRequest.setRequestHeader("Content-Type", "application/json");
         const thisObject = this;
         httpRequest.onreadystatechange = function() {
@@ -85,11 +84,8 @@ export class Login extends React.Component {
     handleChange3 = (event)=>{
         this.setState({originalPassword: event.target.value});
     }
-    next = (info,suggestions)=>{
-        const root = ReactDOM.createRoot(document.getElementsByClassName('App')[0])
-        root.render(<SuggestSheet suggestions={suggestions} info={info}></SuggestSheet>)
-        React.unmountComponentAtNode(document.getElementsByClassName('App')[0])
-        return (<SuggestSheet suggestions={suggestions} info={info}></SuggestSheet>)
+    next = (suggestions,info)=>{
+        this.reLoad(info,suggestions)
             /**
              * info的格式：{studentName: '李华', studentScore: 600, studentRank: 200}
              */
